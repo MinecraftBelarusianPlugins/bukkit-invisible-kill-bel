@@ -11,7 +11,7 @@ public class KillListener implements Listener {
         var killer = player.getKiller();
 
         var isPlayerInvisible = player.hasPotionEffect(PotionEffectType.INVISIBILITY);
-        var isKillerInvisible = player.hasPotionEffect(PotionEffectType.INVISIBILITY);
+        var isKillerInvisible = killer != null && killer.hasPotionEffect(PotionEffectType.INVISIBILITY);
 
         if (killer == null || (!isPlayerInvisible && !isKillerInvisible)) {
             return;
@@ -22,7 +22,7 @@ public class KillListener implements Listener {
         } else if (isKillerInvisible) {
             e.setDeathMessage("Гулец " + player.getName() + " быў забіты кімсьці");
         } else {
-            e.setDeathMessage("Нехта быў забіты гульцом " + player.getName());
+            e.setDeathMessage("Нехта быў забіты гульцом " + killer.getName());
         }
     }
 }
